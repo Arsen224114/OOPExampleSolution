@@ -32,6 +32,6 @@ public:
 		s += ", is alive - ";
 		s += (alive ? "yes" : "no");
 		s += ", average mark = " + to_string(mark);
-		return 0;
+		return s;
 	}
 };
