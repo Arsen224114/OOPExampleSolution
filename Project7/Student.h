@@ -10,67 +10,63 @@ public:
 	double mark;
 	char gender;
 	bool alive;
+	int size;
+	string* subjects;
 
 	//defualt_constructor
-	Student() {
+	Student() : Student("no name", "no surname") {
+		cout << "defoult constructor" << endl;
 		//cout << "defualt_constructor" << endl;
-		firstname = "no name";
-		surname = "nu surname";
-		age = 0;
-		_class = 0;
-		gender = 'm';
-		alive = false;
-		mark = 4;
+		
 	}
 
 	//defualt with arguments
-	Student(string name, string sname) {
-		//cout << "defualt with arguments" << endl;
-		firstname = name;
-		surname = sname;
-		age = 0;
-		_class = 0;
-		gender = 'm';
-		alive = false;
-		mark = 4;
+	Student() : Student("no name", "no surname") {
+		//cout << "defoult constructor" << endl;
 	}
 
-	Student(string name, string sname, int a) {
+	Student(string name, string sname) : firstname(firstname),
+		surname(surname), age(0), _class(0), gender('m'), alive(false),
+		mark(0) {
 		//cout << "defualt with arguments" << endl;
-		firstname = name;
-		surname = sname;
-		age = a;
-		_class = 0;
-		gender = 'm';
-		alive = false;
-		mark = 4;
+		
+	}
+
+	Student(string firstname, string surname, int age): Student(firstname, 
+		surname, age, 0, 'm', true, 4) {
+		//cout << "defualt with arguments" << endl;
+		
 	}
 
 	//canonical constructor
-	Student(string name, string sname, int a, int cl, char g, bool al, double m) {
+	Student(string firstname, string surname, int age) : Student(firstname, surname, age,
+		int _class, char gender, bool alive, double mark) {
 		//cout << "canonical constructor" << endl;
-		firstname = name;
-		surname = sname;
-		age = a;
-		_class = cl;
-		gender = g;
-		alive = al;
-		mark = m;
+		this->firstname = firstname;
+		this->surname = surname;
+		age = age;
+		_class = _class;
+		gender = gender;
+		alive = alive;
+		mark = mark;
 	}
+		
+
 
 	// copy-constructor
-	Student(const Student& student) {
-		firstname = student.firstname;
-		surname = student.surname;
-		age = student.age;
-		_class = student._class;
-		gender = student.gender;
-		alive = student.alive;
-		mark = student.mark;
+	Student(const Student& student) : Student(student.firstname,
+		student.surname, student.age, student._class, student.gender,
+		student.alive, student.mark, student.size, student.subjects) {
+		//cout << "canonical constructor" << endl;
+
 	}
+	
 
 	~Student() {
 		cout << "destructor" << endl;
+		if (subjects != nullptr) {
+			delete[] subjects;
+		}
 	}
 
 	string toString() {
